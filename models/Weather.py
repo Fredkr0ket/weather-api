@@ -1,17 +1,24 @@
 from pydantic import BaseModel
+from datetime import datetime
+
 class WeatherCreate(BaseModel):
   location: str
   temperature: int 
   humidity: int
 
-class WeatherReturn(WeatherCreate):
+class WeatherRes(WeatherCreate):
   id: int
-  date: str
+  location: str
+  temperature: int 
+  humidity: int
+  date: datetime
 
 class WeatherGet(BaseModel):
   id: int | None
   location: str | None
-  date: str | None
+  date: datetime | None
+  
+
 
 
 

@@ -5,5 +5,5 @@ class WeatherItem(Base):
   location = Column(string, default=None)
   temperature = Column(Integer, default=False)
   humidity = Column(Integer, default=False)
-  weather_date = Column(datatime, default=current_timestamp)
+  weather_date = Column(datatime.datatime, default=current_timestamp)
 
