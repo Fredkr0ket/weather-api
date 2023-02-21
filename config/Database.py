@@ -15,22 +15,17 @@ class Database:
         password = self.password,
         database = self.database
       )
-      return db
     except:
-      print("connection could not be made, try again later")
+      print("database connection could not be made, try again later")
     else:
-      print("connection made succesfully")
-
+      print("database connection made succesfully")
+      return db
 
   def closeConnection(cursor, database):
     try:
       cursor.close()
       database.close()
     except:
-      print("could not be close, try again later")
+      print("database connection could not be close, try again later")
     else: 
-      print("closed succesfully")
-
-db = Database("localhost", "root", "toor", "weatherdatabase")
-weatherdb = db.connect()
-cursor = weatherdb.cursor()
+      print("database connection closed succesfully")
