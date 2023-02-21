@@ -1,6 +1,10 @@
 from pydantic import BaseModel
 from datetime import datetime
 
+class WeatherInput(BaseModel):
+  id: int | None = None
+  location: str | None = None
+  date: datetime | None = None
 class WeatherCreate(BaseModel):
   location: str
   temperature: int 
@@ -8,9 +12,6 @@ class WeatherCreate(BaseModel):
 
 class WeatherRes(WeatherCreate):
   id: int
-  location: str
-  temperature: int 
-  humidity: int
   date: datetime
 
 class WeatherGet(BaseModel):
