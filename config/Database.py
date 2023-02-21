@@ -16,16 +16,15 @@ class Database:
         database = self.database
       )
     except:
-      print("database connection could not be made, try again later")
+      print("❌ database connection could not be made, try again later ❌")
     else:
-      print("database connection made succesfully")
+      print("🔗 database connection made succesfully 🔗")
       return db
 
-  def closeConnection(cursor, database):
+  def closeConnection(cursor):
     try:
       cursor.close()
-      database.close()
     except:
-      print("database connection could not be close, try again later")
+      print("❌ database connection could not be close, try again later ❌")
     else: 
-      print("database connection closed succesfully")
+      print("🔌 database connection closed succesfully 🔌")
