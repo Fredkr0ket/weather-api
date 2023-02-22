@@ -11,9 +11,9 @@ app = FastAPI()
 
 
 
-@app.get("/getweather/")
-def read_getweather(id: int = None, location: str = None, date: datetime = None ) -> list[WeatherRes]:
-    weatherData = {"id": id, "location": location, "date": date}
+@app.get("/getweather/{location}")
+def read_getweather(location: str, date: str = None) -> list[WeatherRes]:
+    weatherData = {"location": location, "weather_date": date}
     weather = Weather(weatherData, cursor)
     return weather.get()
 
