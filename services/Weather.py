@@ -5,33 +5,35 @@ from models.Weather import WeatherGet, WeatherInput
 from mysql.connector.cursor import CursorBase
 
 class Weather:
-    def __init__(data, inputData: WeatherInput, cursor: CursorBase):
-        data.id = inputData["id"]
-        data.date = inputData["date"]
-        data.location = inputData["location"]
-        data.cursor = cursor
+    def __init__(self, inputData: WeatherInput, cursor: CursorBase):
+        self.id = inputData["id"]
+        self.date = inputData["date"]
+        self.location = inputData["location"]
+        self.cursor = cursor
+
+        
     
-    def __getFromDb(data):
-        if (data["id"] != None):
-            sql = f'SELECT * FROM weather_data WHERE id = {data["id"]}'
-        elif (data["location"] != None):
-            sql = f'SELECT * FROM weather_data WHERE location = {data["location"]}'
-        elif (data["date"] != None):
-            sql = f'SELECT * FROM weather_data WHERE weather_date = {data["date"]}'
-        data.cursor.execute(sql)
-        result = data.datecursor.fetchall()
+    def __getFromDb(self):
+        if (self.id != None):
+            sql = f'SELECT * FROM weather_data WHERE id = {self.id}'
+        elif (self.location != None):
+            sql = f'SELECT * FROM weather_data WHERE location = {self.location}'
+        elif (self.date != None):
+            sql = f'SELECT * FROM weather_data WHERE weather_date = {self.date}'
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
         return result 
 
 
-    def get(data):
-        if (data.id == None and data.date == None and data.location == None):
+    def get(self):
+        if (self.id == None and self.date == None and self.location == None):
             raise HTTPException(
                 status_code=422, 
                 detail="No parameters"
             )
     
-        data: WeatherGet = {"id": data.id, "location": data.location, "date": data.date}
-        results = Weather.__getFromDb(data, data.cursor)
+        data: WeatherGet = {"id": self.id, "location": self.location, "date": self.date}
+        results = self.__getFromDb()
         newResults: list[WeatherGet] = []
         dictNames = ["id", "location", "temperature", "humidity", "date"]
 
