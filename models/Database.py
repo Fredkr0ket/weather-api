@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-class DatabaseConnect(BaseModel):
+class DatabaseCredentials(BaseModel):
   host: str
   user: str
   password: str

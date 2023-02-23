@@ -1,11 +1,11 @@
 import mysql.connector as mysql
-
+from models.Database import DatabaseCredentials
 class Database:
-  def __init__(self, host, user, password, database):
-    self.host = host
-    self.user = user
-    self.password = password
-    self.database = database
+  def __init__(self, dbCredentials: DatabaseCredentials):
+    self.host = dbCredentials["host"]
+    self.user = dbCredentials["user"]
+    self.password = dbCredentials["password"]
+    self.database = dbCredentials["database"]
 
   def connect(self):
     try:
@@ -20,11 +20,3 @@ class Database:
     else:
       print("🔗 database connection made succesfully 🔗")
       return db
-
-  def closeConnection(cursor):
-    try:
-      cursor.close()
-    except:
-      print("❌ database connection could not be close, try again later ❌")
-    else: 
-      print("🔌 database connection closed succesfully 🔌")

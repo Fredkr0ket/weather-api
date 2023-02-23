@@ -11,4 +11,3 @@ class WeatherItem(BaseModel):
   temperature = Column(int, default=False)
   humidity = Column(int, default=False)
   weather_date = Column(datetime.datatime)
-

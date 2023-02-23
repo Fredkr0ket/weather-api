@@ -2,8 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class WeatherInput(BaseModel):
-  id: int | None = None
-  location: str | None = None
+  location: str 
   date: datetime | None = None
 class WeatherCreate(BaseModel):
   location: str
@@ -14,10 +13,9 @@ class WeatherRes(WeatherCreate):
   id: int
   date: datetime
 
-class WeatherGet(BaseModel):
-  id: int | None
-  location: str | None
-  date: datetime | None
+class WeatherGet(WeatherCreate):
+  id: int
+  date: datetime
   
 
 
