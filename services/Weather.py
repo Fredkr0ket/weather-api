@@ -10,7 +10,6 @@ class Weather:
 
         
     def __getFromDb(self):
-        print(self.data)
         with self.db.cursor() as cursor:
             location = '"' + self.data['location'] + '"'
             query = f'SELECT * FROM weather_data WHERE location = {location}'
@@ -26,7 +25,6 @@ class Weather:
                     value2 = '"' + value['value2'] + '"'
                     queryAdd = f'and {key} >= {value1} and {key} <= {value2}'
                     query += queryAdd
-                    print(query)
 
                 elif value != None:
                     newValue = '"' + value + '"'
@@ -59,7 +57,6 @@ class Weather:
         temperature = self.data.temperature
         humidity = self.data.humidity
         postQuery = f'INSERT INTO weather_data (`location`, `temperature`, `humidity`) VALUES ({location}, {temperature}, {humidity})'
-        print(postQuery)
         with self.db.cursor() as cursor:
             try:
                 cursor.execute(postQuery)
