@@ -10,20 +10,23 @@ class Weather:
 
         
     def __getFromDb(self):
+        print(self.data)
         with self.db.cursor() as cursor:
             location = '"' + self.data['location'] + '"'
-            sql = f'SELECT * FROM weather_data WHERE location = {location}'
-            for key in self.data:
-                if key == 'location':
-                    continue
-                value = self.data[key]
-                if value:
-                    newValue = '"' + value + '"'
-                    newSql = f' and {key} = {newValue}'
-                    sql += newSql
-                    print(sql)
+            query = f'SELECT * FROM weather_data WHERE location = {location}'
 
-            cursor.execute(sql)
+            for key in self.data:
+                value = self.data[key]
+
+                if key == 'location' or key == None:
+                    continue    
+
+                if value != None:
+                    newValue = '"' + value + '"'
+                    queryAdd = f' and {key} = {newValue}'
+                    query += queryAdd
+
+            cursor.execute(query)
             result = cursor.fetchall()
 
             if result == []:
@@ -40,6 +43,8 @@ class Weather:
         for result in results:
             res = tupleToDict(result, dictNames)
             newResults.append(res)
+        if len(newResults) <= 1:
+            return newResults
         return newResults
     
     def post(self) -> HTTPException:

@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI
+from fastapi import  FastAPI, Header
 from models.Weather import  WeatherRes, WeatherCreate
 from services.Weather import Weather
 from services.Auth import Auth
@@ -15,10 +15,13 @@ dbCredentials = {"host": os.getenv("DB_HOST"),
 db = Database(dbCredentials).connect()
 
 @app.get("/getweather/{location}")
-def get_weather(location: str, token: str, date: str = None) -> list[WeatherRes]:
+def get_weather(location: str, token: str, date1: str = None, date2: str = None) -> list[WeatherRes] | WeatherRes:
     Auth(token)
+    date = {"date1": date1, 
+            "date2": date2}
     weatherData = {"location": location, 
-                   "weather_date": date }
+                   "weather_date": date}
+    
     weather = Weather(weatherData, db)
     result = weather.get()
     return result
