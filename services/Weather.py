@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from .TupleToDict import tupleToDict
+from .Functions import tupleToDict
 from models.Weather import WeatherCreate, WeatherGet, WeatherInput
 from mysql.connector import MySQLConnection
 
@@ -19,9 +19,16 @@ class Weather:
                 value = self.data[key]
 
                 if key == 'location' or key == None:
-                    continue    
+                    continue 
 
-                if value != None:
+                if type(value) == dict:
+                    value1 = '"' + value['value1'] + '"'
+                    value2 = '"' + value['value2'] + '"'
+                    queryAdd = f'and {key} >= {value1} and {key} <= {value2}'
+                    query += queryAdd
+                    print(query)
+
+                elif value != None:
                     newValue = '"' + value + '"'
                     queryAdd = f' and {key} = {newValue}'
                     query += queryAdd

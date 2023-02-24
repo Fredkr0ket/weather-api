@@ -1,10 +1,12 @@
-from fastapi import  FastAPI, Header
+from fastapi import  FastAPI
 from models.Weather import  WeatherRes, WeatherCreate
 from services.Weather import Weather
 from services.Auth import Auth
 from dotenv import load_dotenv
 from config.Database import Database
+from services.Functions import checkItems
 import os
+
 
 app = FastAPI()
 load_dotenv()
@@ -14,11 +16,11 @@ dbCredentials = {"host": os.getenv("DB_HOST"),
                  "database": os.getenv("DB_NAME")}
 db = Database(dbCredentials).connect()
 
+
 @app.get("/getweather/{location}")
-def get_weather(location: str, token: str, date1: str = None, date2: str = None) -> list[WeatherRes] | WeatherRes:
+def get_weather(location: str, token: str, date: str = None, date_end: str = None) -> list[WeatherRes] | WeatherRes:
     Auth(token)
-    date = {"date1": date1, 
-            "date2": date2}
+    date =  checkItems(date, date_end)
     weatherData = {"location": location, 
                    "weather_date": date}
     
