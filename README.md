@@ -1,5 +1,5 @@
 # Weather API
-**the api is still a work in progress**
+**the api is still a work in progress.**
 Weather api created using fastapi framework.
 the api gets the data from a mysql database.
 
