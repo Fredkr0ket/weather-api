@@ -21,7 +21,7 @@ db = Database(dbCredentials).connect()
 def get_weather(location: str, token: str, date: str = None, date_end: str = None) -> list[WeatherRes] | WeatherRes:
     Auth(token)
     date =  checkItems(date, date_end)
-    weatherData = {"location": location, 
+    weatherData = {"weather_location": location, 
                    "weather_date": date}
     
     weather = Weather(weatherData, db)

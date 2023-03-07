@@ -8,7 +8,7 @@ class Weather:
         self.data = inputData
         self.db = db
 
-        
+
     def __getFromDb(self):
         with self.db.cursor() as cursor:
             location = '"' + self.data['location'] + '"'
@@ -56,7 +56,7 @@ class Weather:
         location = '"' + self.data.location + '"'
         temperature = self.data.temperature
         humidity = self.data.humidity
-        postQuery = f'INSERT INTO weather_data (`location`, `temperature`, `humidity`) VALUES ({location}, {temperature}, {humidity})'
+        postQuery = f'INSERT INTO weather_data (`weather_location`, `temperature`, `humidity`) VALUES ({location}, {temperature}, {humidity})'
         with self.db.cursor() as cursor:
             try:
                 cursor.execute(postQuery)
