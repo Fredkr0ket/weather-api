@@ -17,4 +17,4 @@ eventualy the data that is going to be used is going to come from an [esp32](htt
 
 ## How to use
 1. after starting up the api look up localhost:8000/docs in your browser
-2. after 
+2. after that you can use the endpoints.
