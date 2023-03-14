@@ -6,7 +6,7 @@ class WeatherInput(BaseModel):
   date: datetime | None = None
 class WeatherCreate(BaseModel):
   location: str
-  temperature: int 
+  temperature: int
   humidity: int
 
 class WeatherRes(WeatherCreate):
@@ -16,7 +16,7 @@ class WeatherRes(WeatherCreate):
 class WeatherGet(WeatherCreate):
   id: int
   date: datetime
-  
+
 
 
 

@@ -10,4 +10,3 @@ class Auth:
             raise HTTPException(
                 status_code=401
             )
-    

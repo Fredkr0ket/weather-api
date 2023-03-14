@@ -18,7 +18,7 @@ class Weather:
                 value = self.data[key]
 
                 if key == 'location' or key == None:
-                    continue 
+                    continue
 
                 if type(value) == dict:
                     value1 = '"' + value['value1'] + '"'
@@ -38,7 +38,7 @@ class Weather:
                 raise HTTPException(
                     status_code=400
                 )
-            return result 
+            return result
 
 
     def get(self) -> list[WeatherGet]:
@@ -51,7 +51,7 @@ class Weather:
         if len(newResults) <= 1:
             return newResults
         return newResults
-    
+
     def post(self) -> HTTPException:
         location = '"' + self.data.location + '"'
         temperature = self.data.temperature
@@ -69,11 +69,3 @@ class Weather:
                 raise HTTPException(
                     status_code=200
                 )
-
-
-
-
-
-  
-
-

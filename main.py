@@ -10,8 +10,8 @@ import os
 
 app = FastAPI()
 load_dotenv()
-dbCredentials = {"host": os.getenv("DB_HOST"), 
-                 "user": os.getenv("DB_USER"), 
+dbCredentials = {"host": os.getenv("DB_HOST"),
+                 "user": os.getenv("DB_USER"),
                  "password": os.getenv("DB_PASS"),
                  "database": os.getenv("DB_NAME")}
 db = Database(dbCredentials).connect()
@@ -21,18 +21,16 @@ db = Database(dbCredentials).connect()
 def get_weather(location: str, token: str, date: str = None, date_end: str = None) -> list[WeatherRes] | WeatherRes:
     Auth(token)
     date =  checkItems(date, date_end)
-    weatherData = {"weather_location": location, 
+    weatherData = {"weather_location": location,
                    "weather_date": date}
-    
+
     weather = Weather(weatherData, db)
     result = weather.get()
     return result
+
 
 @app.post("/addweather/")
 def post_weather(weatherData: WeatherCreate, token: str):
     Auth(token)
     weather = Weather(weatherData, db)
     weather.post()
-
-    
-

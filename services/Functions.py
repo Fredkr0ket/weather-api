@@ -12,4 +12,3 @@ def checkItems(item1, item2):
     if item1 and item2 == None:
         return item1
     return {"value1": item1, "value2": item2}
-    

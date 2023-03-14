@@ -4,6 +4,3 @@ class DatabaseCredentials(BaseModel):
   user: str
   password: str
   database: str
-
-
-  
