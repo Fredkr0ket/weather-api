@@ -16,9 +16,3 @@ class WeatherRes(WeatherCreate):
 class WeatherGet(WeatherCreate):
   id: int
   date: datetime
-
-
-
-
-
-

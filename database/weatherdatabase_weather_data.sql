@@ -38,7 +38,7 @@ CREATE TABLE `weather_data` (
 
 LOCK TABLES `weather_data` WRITE;
 /*!40000 ALTER TABLE `weather_data` DISABLE KEYS */;
-INSERT INTO `weather_data` VALUES (1,'drachten',123,12,'2023-03-06 11:52:23'),(2,'baas',20,20,'2023-03-07 10:52:19'),(3,'drachten',20,20,'2023-03-07 10:52:35');
+INSERT INTO `weather_data` VALUES (1,'drachten',123,12,'2023-03-06 11:52:23'),(2,'  ',20,20,'2023-03-07 10:52:19'),(3,'drachten',20,20,'2023-03-07 10:52:35');
 /*!40000 ALTER TABLE `weather_data` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
