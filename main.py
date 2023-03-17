@@ -7,6 +7,9 @@ from config.Database import Database
 from services.Functions import checkItems
 import os
 
+
+# link: https://github.com/Fredkr0ket/weather-api
+
 app = FastAPI()
 load_dotenv()
 
@@ -14,7 +17,7 @@ load_dotenv()
 dbCredentials = {"host": os.getenv("DB_HOST"),
                  "user": os.getenv("DB_USER"),
                  "password": os.getenv("DB_PASS"),
-                 "database": os.getenv("DB_NAME")}
+                 "dat   abase": os.getenv("DB_NAME")}
 
 # creating an instance of the Database class using the the dbCreadentials and connecting to that instance
 db = Database(dbCredentials).connect()
