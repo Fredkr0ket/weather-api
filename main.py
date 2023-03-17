@@ -32,10 +32,9 @@ def get_weather(location: str, token: str, date: str = None, date_end: str = Non
 
     Example:
     you wane get the data between 2022 and 2023 you Date should be: 2022-01-01 00:00:00 and Date_end should be: 2023-01-01 00:00:00
-    
+
     Date: datetime string = the data of any calculated data.
     Date_end: datetime string = the end date.
-
     '''
     Auth(token)
     date =  checkItems(date, date_end)
