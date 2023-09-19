@@ -1,4 +1,5 @@
 from fastapi import  FastAPI
+import uvicorn
 from models.Weather import  WeatherRes, WeatherCreate
 from services.Weather import Weather
 from services.Auth import Auth
@@ -17,7 +18,7 @@ load_dotenv()
 dbCredentials = {"host": os.getenv("DB_HOST"),
                  "user": os.getenv("DB_USER"),
                  "password": os.getenv("DB_PASS"),
-                 "dat   abase": os.getenv("DB_NAME")}
+                 "database": os.getenv("DB_NAME")}
 
 # creating an instance of the Database class using the the dbCreadentials and connecting to that instance
 db = Database(dbCredentials).connect()
@@ -63,3 +64,6 @@ def post_weather(weatherData: WeatherCreate, token: str):
     Auth(token)
     weather = Weather(weatherData, db)
     weather.post()
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=5000, log_level="info")
